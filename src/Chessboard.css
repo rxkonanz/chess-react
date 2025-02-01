@@ -1,0 +1,12 @@
+.chess-container {
+    justify-content: center;
+    align-items: center;
+    height: 40vh; /* Full screen height */
+    width: 40vw;  /* Full screen width */
+    padding-left: 40px;
+}
+
+.chess-container > div {
+    max-width: 50vw; /* Ensure it doesn’t get too large */
+    max-height: 50vh;
+}
