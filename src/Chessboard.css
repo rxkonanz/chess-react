@@ -1,12 +1,30 @@
 .chess-container {
-    justify-content: center;
-    align-items: center;
-    height: 40vh; /* Full screen height */
-    width: 40vw;  /* Full screen width */
-    padding-left: 40px;
+    width: 100%;
+    height: auto;
+    padding: 20px;
 }
 
-.chess-container > div {
-    max-width: 50vw; /* Ensure it doesn’t get too large */
-    max-height: 50vh;
+.chess-board {
+    width: 100%;
+    height: auto;
+    max-width: 90vw; /* Prevent it from getting too wide on larger screens */
+    max-height: 90vh; /* Prevent it from becoming too large */
+}
+
+.chess-piece {
+    /* Optional: Make the pieces larger on mobile devices */
+    width: 40px;
+    height: 40px;
+}
+
+@media (max-width: 768px) {
+    .chess-board {
+        width: 90%;
+        max-width: 500px;  /* Make it a little smaller on mobile */
+    }
+    
+    .chess-piece {
+        width: 50px;
+        height: 50px;
+    }
 }
