@@ -44,7 +44,18 @@ const ChessboardComponent = () => {
                 let cleanMove = await getAiMove(gameCopy.fen());
                 console.log(cleanMove);
                 gameCopy.move({ from: cleanMove.slice(0, 2), to: cleanMove.slice(2, 4), promotion: "q"});
-                //return;
+                setGame(gameCopy);
+                // Check for checks (confusing ikr)
+                setIsCheck(gameCopy.inCheck());
+
+                // Check for checkmate and stalemate
+                if (gameCopy.isCheckmate()){
+                    setGameOver("Checkmate");
+                } else if (gameCopy.isStalemate()) {
+                    setGameOver("Stalemate");
+                } else if (gameCopy.isGameOver()) {
+                    setGameOver("Game Over");
+                }
             }
 
         } catch (error) {
