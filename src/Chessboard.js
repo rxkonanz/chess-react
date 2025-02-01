@@ -4,10 +4,18 @@ import { Chessboard } from "react-chessboard";
 import "./Chessboard.css";
 
 const ChessboardComponent = () => {
+    
     const [game, setGame] = useState(new Chess());
     const [isCheck, setIsCheck] = useState(false);
+    const [gameOver, setGameOver] = useState(null);
 
     const makeMove = ({ from, to, promotion }) => {
+        
+        if(gameOver){
+            console.log("status of game over", gameOver);
+            return; // Do not allow moves after game is over.
+        }
+
         try {
             const gameCopy = new Chess(game.fen());
             const move = gameCopy.move({ from, to, promotion: promotion || "q" });
@@ -16,7 +24,18 @@ const ChessboardComponent = () => {
                 return;
             }
             setGame(gameCopy);
+
+            // Check for checks (confusing ikr)
             setIsCheck(gameCopy.inCheck());
+
+            // Check for checkmate and stalemate
+            if (gameCopy.isCheckmate()){
+                setGameOver("Checkmate");
+            } else if (gameCopy.isStalemate()) {
+                setGameOver("Stalemate");
+            } else if (gameCopy.isGameOver()) {
+                setGameOver("Game Over");
+            }
         } catch (error) {
             console.error("Invalid move:", { from, to, promotion }, error);
         }
@@ -38,6 +57,7 @@ const ChessboardComponent = () => {
 
     return (
         <div className="chess-container">
+            {gameOver && <h2 style={{ color: "blue" }}>{gameOver}</h2>}
             <Chessboard
                 position={game.fen()}
                 onPieceDrop={(sourceSquare, targetSquare) => 
@@ -45,7 +65,7 @@ const ChessboardComponent = () => {
                 }
                 customSquareStyles={getCheckSquare()} // Highlight Checked King
             />
-            {isCheck && <h2 style={{ color: "red"}}>Check!</h2>}
+            {isCheck && !gameOver && <h2 style={{ color: "red"}}>Check!</h2>}
         </div>
     );
 };
