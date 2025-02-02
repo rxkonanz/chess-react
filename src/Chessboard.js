@@ -67,7 +67,7 @@ const ChessboardComponent = () => {
         setLoading(true); // Start loading indicator
         try {
 
-            const url = `https://stockfish.online/api/s/v2.php?fen=${encodeURIComponent(fen)}&depth=12&mode=bestmove`;
+            const url = `https://stockfish.online/api/s/v2.php?fen=${encodeURIComponent(fen)}&depth=6&mode=bestmove`;
             const response = await fetch(url, {
             method: "GET",  // Use GET since we're passing data in the URL
             headers: {

@@ -1,14 +1,16 @@
 .chess-container {
-    width: 100%;
+    width: 70%;
     height: auto;
     padding: 20px;
+    max-width: 1000px; /* Prevent it from getting too wide on larger screens */
+    max-height: 1000px;
 }
 
 .chess-board {
-    width: 100%;
+    width: 70%;
     height: auto;
-    max-width: 90vw; /* Prevent it from getting too wide on larger screens */
-    max-height: 90vh; /* Prevent it from becoming too large */
+    max-width: 600px; /* Prevent it from getting too wide on larger screens */
+    max-height: 600px; /* Prevent it from becoming too large */
 }
 
 .chess-piece {
