@@ -1,32 +1,196 @@
+/* ── Layout ───────────────────────────────────────────────── */
+.game-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 0 20px 40px;
+}
+
 .chess-container {
-    width: 90%;
-    height: auto;
-    padding: 20px;
-    max-width: 900px; /* Prevent it from getting too wide on larger screens */
-    max-height: 900px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
 }
 
-.chess-board {
-    width: 70%;
-    height: auto;
-    max-width: 600px; /* Prevent it from getting too wide on larger screens */
-    max-height: 600px; /* Prevent it from becoming too large */
+/* ── Controls bar above the board ────────────────────────── */
+.board-controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 12px;
+    width: 100%;
 }
 
-.chess-piece {
-    /* Optional: Make the pieces larger on mobile devices */
-    width: 40px;
-    height: 40px;
+.new-game-btn {
+    padding: 9px 22px;
+    font-size: 15px;
+    font-weight: 600;
+    background-color: #4a7fcb;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.18s, transform 0.12s;
+    white-space: nowrap;
 }
 
+.new-game-btn:hover {
+    background-color: #3568b5;
+    transform: translateY(-1px);
+}
+
+.new-game-btn:active {
+    transform: translateY(0);
+}
+
+/* ── Status messages ─────────────────────────────────────── */
+.game-over-msg {
+    font-size: 18px;
+    font-weight: 700;
+    color: #c0392b;
+}
+
+.check-msg {
+    font-size: 18px;
+    font-weight: 700;
+    color: #c0392b;
+}
+
+.thinking-msg {
+    font-size: 14px;
+    color: #888;
+    font-style: italic;
+}
+
+/* ── Move history panel ──────────────────────────────────── */
+.history-panel {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    width: 190px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 14px 12px;
+    background: #f8f8f8;
+    /* Align top of panel with top of board controls */
+    margin-top: 0;
+}
+
+.history-title {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+    font-weight: 700;
+    color: #444;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 8px;
+}
+
+.moves-list {
+    overflow-y: auto;
+    max-height: 520px;
+}
+
+.no-moves {
+    color: #bbb;
+    font-style: italic;
+    font-size: 13px;
+    margin: 4px 0;
+}
+
+/* ── Moves table ─────────────────────────────────────────── */
+.moves-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.moves-table tr:nth-child(even) {
+    background-color: #efefef;
+}
+
+.move-number {
+    color: #aaa;
+    padding: 4px 4px 4px 0;
+    width: 22px;
+    text-align: right;
+    font-size: 12px;
+    user-select: none;
+}
+
+.move-white {
+    padding: 4px 10px 4px 6px;
+    font-family: "Courier New", monospace;
+    font-weight: 600;
+    color: #222;
+    width: 72px;
+}
+
+.move-black {
+    padding: 4px 4px 4px 0;
+    font-family: "Courier New", monospace;
+    color: #555;
+    width: 72px;
+}
+
+/* ── Difficulty slider ───────────────────────────────────── */
+.difficulty-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.difficulty-label {
+    font-size: 13px;
+    color: #666;
+    white-space: nowrap;
+}
+
+.difficulty-slider {
+    flex: 1;
+    accent-color: #4a7fcb;
+    cursor: pointer;
+    max-width: 140px;
+}
+
+.difficulty-slider:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.difficulty-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: #4a7fcb;
+    min-width: 46px;
+}
+
+/* ── Mobile ──────────────────────────────────────────────── */
 @media (max-width: 768px) {
-    .chess-board {
-        width: 90%;
-        max-width: 500px;  /* Make it a little smaller on mobile */
+    .game-wrapper {
+        flex-direction: column;
+        align-items: center;
+        padding: 0 10px 30px;
+        gap: 16px;
     }
-    
-    .chess-piece {
-        width: 50px;
-        height: 50px;
+
+    .chess-container {
+        max-width: 500px;
+        width: 100%;
+    }
+
+    .history-panel {
+        width: 90%;
+        max-width: 500px;
+    }
+
+    .moves-list {
+        max-height: 180px;
     }
 }
