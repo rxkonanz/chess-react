@@ -171,6 +171,31 @@
     min-width: 46px;
 }
 
+/* ── Large screens ───────────────────────────────────────── */
+@media (min-width: 1280px) {
+    .game-wrapper {
+        justify-content: center;
+    }
+
+    .chess-container {
+        max-width: 760px;
+    }
+
+    .moves-list {
+        max-height: 660px;
+    }
+}
+
+@media (min-width: 1600px) {
+    .chess-container {
+        max-width: 900px;
+    }
+
+    .moves-list {
+        max-height: 800px;
+    }
+}
+
 /* ── Mobile ──────────────────────────────────────────────── */
 @media (max-width: 768px) {
     .game-wrapper {
