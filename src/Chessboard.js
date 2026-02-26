@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Chess } from "chess.js";
 import { Chessboard } from "react-chessboard";
+import { customPieces } from "./pieces";
 import "./Chessboard.css";
 
 const DIFFICULTY_LEVELS = [
@@ -204,6 +205,8 @@ const ChessboardComponent = () => {
     }
 
     return (
+        <div className="game-outer">
+        <h1 className="game-title">Can you beat AI in Chess?</h1>
         <div className="game-wrapper">
             <div className="chess-container">
                 <div className="board-controls">
@@ -237,6 +240,17 @@ const ChessboardComponent = () => {
                     }}
                     onSquareClick={onSquareClick}
                     customSquareStyles={getCustomSquareStyles()}
+                    customPieces={customPieces}
+                    customDarkSquareStyle={{ backgroundColor: "#2d0088" }}
+                    customLightSquareStyle={{ backgroundColor: "#ffffff" }}
+                    customBoardStyle={{
+                        borderRadius: "2px",
+                        boxShadow: "0 0 0 4px #f5e642, 0 0 0 7px #2d0088, 0 0 40px #f5e64244",
+                    }}
+                    customDropSquareStyle={{
+                        boxShadow: "inset 0 0 0 4px #f5e642, inset 0 0 16px #f5e64288",
+                    }}
+                    customArrowColor="rgba(245,230,66,0.9)"
                 />
             </div>
 
@@ -260,6 +274,7 @@ const ChessboardComponent = () => {
                     )}
                 </div>
             </div>
+        </div>
         </div>
     );
 };

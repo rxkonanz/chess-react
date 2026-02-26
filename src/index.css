@@ -5,9 +5,14 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* Deep purple base with Warhol halftone dots */
+  background-color: #0a0018;
+  background-image: radial-gradient(circle, #ff149322 1.5px, transparent 1.5px);
+  background-size: 22px 22px;
+  color: #f5e642;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }

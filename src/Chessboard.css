@@ -12,10 +12,12 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    max-width: 600px;
+    /* Board is square, so cap width by both viewport width AND available height.
+       ~260px accounts for: title (~105px) + controls (~55px) + difficulty (~40px) + padding (~60px) */
+    max-width: min(600px, calc(100vh - 260px));
 }
 
-/* ── Controls bar above the board ────────────────────────── */
+/* ── Controls bar ─────────────────────────────────────────── */
 .board-controls {
     display: flex;
     align-items: center;
@@ -26,43 +28,57 @@
 
 .new-game-btn {
     padding: 9px 22px;
-    font-size: 15px;
-    font-weight: 600;
-    background-color: #4a7fcb;
-    color: #fff;
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: #ff1493;
+    color: #0a0018;
     border: none;
-    border-radius: 8px;
+    border-radius: 0;                /* flat/blocky — pop art */
     cursor: pointer;
-    transition: background-color 0.18s, transform 0.12s;
+    transition: background 0.1s, transform 0.1s, box-shadow 0.1s;
     white-space: nowrap;
+    box-shadow: 3px 3px 0 #f5e642;
 }
 
 .new-game-btn:hover {
-    background-color: #3568b5;
-    transform: translateY(-1px);
+    background: #f5e642;
+    color: #0a0018;
+    box-shadow: 3px 3px 0 #ff1493;
 }
 
 .new-game-btn:active {
-    transform: translateY(0);
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 #ff1493;
 }
 
 /* ── Status messages ─────────────────────────────────────── */
 .game-over-msg {
-    font-size: 18px;
-    font-weight: 700;
-    color: #c0392b;
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #ff1493;
+    text-shadow: 2px 2px 0 #f5e642, 0 0 12px #ff149388;
 }
 
 .check-msg {
-    font-size: 18px;
-    font-weight: 700;
-    color: #c0392b;
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #ff1493;
+    text-shadow: 2px 2px 0 #f5e642, 0 0 12px #ff149388;
 }
 
 .thinking-msg {
-    font-size: 14px;
-    color: #888;
-    font-style: italic;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #00e5ff;
+    text-shadow: 0 0 8px #00e5ff;
 }
 
 /* ── Move history panel ──────────────────────────────────── */
@@ -71,22 +87,22 @@
     flex-direction: column;
     flex-shrink: 0;
     width: 190px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
+    border: 3px solid #f5e642;
+    border-radius: 0;                /* flat/blocky */
     padding: 14px 12px;
-    background: #f8f8f8;
-    /* Align top of panel with top of board controls */
+    background: #0a0018;
+    box-shadow: 4px 4px 0 #ff1493;
     margin-top: 0;
 }
 
 .history-title {
     margin: 0 0 10px 0;
-    font-size: 14px;
-    font-weight: 700;
-    color: #444;
+    font-size: 11px;
+    font-weight: 900;
+    color: #f5e642;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    border-bottom: 1px solid #e0e0e0;
+    letter-spacing: 0.12em;
+    border-bottom: 2px solid #ff1493;
     padding-bottom: 8px;
 }
 
@@ -95,10 +111,14 @@
     max-height: 520px;
 }
 
+.moves-list::-webkit-scrollbar        { width: 4px; }
+.moves-list::-webkit-scrollbar-track  { background: transparent; }
+.moves-list::-webkit-scrollbar-thumb  { background: #ff1493; border-radius: 0; }
+
 .no-moves {
-    color: #bbb;
+    color: #ff149366;
     font-style: italic;
-    font-size: 13px;
+    font-size: 12px;
     margin: 4px 0;
 }
 
@@ -110,30 +130,31 @@
 }
 
 .moves-table tr:nth-child(even) {
-    background-color: #efefef;
+    background-color: #1a0055;
 }
 
 .move-number {
-    color: #aaa;
+    color: #ff149388;
     padding: 4px 4px 4px 0;
     width: 22px;
     text-align: right;
-    font-size: 12px;
+    font-size: 11px;
     user-select: none;
 }
 
 .move-white {
     padding: 4px 10px 4px 6px;
     font-family: "Courier New", monospace;
-    font-weight: 600;
-    color: #222;
+    font-weight: 700;
+    color: #f5e642;
     width: 72px;
 }
 
 .move-black {
     padding: 4px 4px 4px 0;
     font-family: "Courier New", monospace;
-    color: #555;
+    font-weight: 700;
+    color: #00e5ff;
     width: 72px;
 }
 
@@ -147,52 +168,54 @@
 }
 
 .difficulty-label {
-    font-size: 13px;
-    color: #666;
+    font-size: 11px;
+    font-weight: 900;
+    color: #f5e64299;
     white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
 }
 
 .difficulty-slider {
     flex: 1;
-    accent-color: #4a7fcb;
+    accent-color: #ff1493;
     cursor: pointer;
     max-width: 140px;
 }
 
 .difficulty-slider:disabled {
-    opacity: 0.45;
+    opacity: 0.35;
     cursor: not-allowed;
 }
 
 .difficulty-name {
-    font-size: 13px;
-    font-weight: 700;
-    color: #4a7fcb;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #ff1493;
     min-width: 46px;
+    text-shadow: 0 0 8px #ff149388;
 }
 
 /* ── Large screens ───────────────────────────────────────── */
 @media (min-width: 1280px) {
-    .game-wrapper {
-        justify-content: center;
-    }
-
     .chess-container {
-        max-width: 760px;
+        max-width: min(760px, calc(100vh - 260px));
     }
 
     .moves-list {
-        max-height: 660px;
+        max-height: calc(min(760px, calc(100vh - 260px)) + 44px);
     }
 }
 
 @media (min-width: 1600px) {
     .chess-container {
-        max-width: 900px;
+        max-width: min(900px, calc(100vh - 260px));
     }
 
     .moves-list {
-        max-height: 800px;
+        max-height: calc(min(900px, calc(100vh - 260px)) + 44px);
     }
 }
 
@@ -206,7 +229,7 @@
     }
 
     .chess-container {
-        max-width: 500px;
+        max-width: min(500px, calc(100vh - 240px));
         width: 100%;
     }
 
